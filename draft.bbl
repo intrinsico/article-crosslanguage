@@ -1,0 +1,29 @@
+\begin{thebibliography}{1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+
+\bibitem{aprosio}
+Aprosio, A.P., Giuliano, C., Lavelli, A.: Automatic expansion of dbpedia
+  exploiting wikipedia cross-language information. In: Cimiano, P., Corcho, s.,
+  Presutti, V., Hollink, L., Rudolph, S. (eds.) ESWC. Lecture Notes in Computer
+  Science, vol. 7882, pp. 397--411. Springer (2013),
+  \url{http://dblp.uni-trier.de/db/conf/esws/eswc2013.html#AprosioGL13}
+
+\bibitem{buscaldi_rosso}
+Buscaldi, D., Rosso, P.: Mining knowledge from wikipedia for the question
+  answering task. In: Proceedings of the 5th International Conference on
+  Language Resources and Evaluation (LREC). pp. 727--730. Genoa, Italy (2006)
+
+\bibitem{erdmann}
+Erdmann, M., Nakayama, K., Hara, T., Nishio, S.: An approach for extracting
+  bilingual terminology from wikipedia. In: Proceedings of the 13th
+  international conference on Database systems for advanced applications. pp.
+  380--392. DASFAA'08, Springer-Verlag, Berlin, Heidelberg (2008),
+  \url{http://dl.acm.org/citation.cfm?id=1802514.1802552}
+
+\bibitem{mihalcea}
+Mihalcea, R.: {Using Wikipedia for Automatic Word Sense Disambiguation}. In:
+  North American Chapter of the Association for Computational Linguistics
+  (NAACL 2007) (2007)
+
+\end{thebibliography}
