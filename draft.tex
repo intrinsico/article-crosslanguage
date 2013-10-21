@@ -65,26 +65,57 @@ Papers:
 
 \section{Methodology}
 
-At the time of starting the experiments, there are 360 mappings available for the English DBpedia, covering around 1.7M entities,
-against almost 4M articles in Wikipedia. The remaining pages are automatically mapped to the trivial top-level class owl:Thing. Hereafter, when we speak about coverage, we will always refer to classes different from owl:Thing. (tirei de um artigo, talvez atualizar e usar no nosso?)
+The methodology adopted for the Cross-Language enrichment is describe in Figure (colocar figura). First we get our two groups of files as input, then we proceed with the filtering, conforming, search and appending stages.
 
 \subsection{Entity Representation}
 
 Our approach exploits the Wikipedia cross-language links to represent each entity. We use an approach similar to \cite{aprosio} where we represent entities using an entity matrix. 
 
 (aqui inicia o texto desse autor, podemos nos basear)
-Formally, we proceed as follows to automatically derive the set of sentities $\epsilon$, also used to build the training set. Let $\mathcal{L}$ be the set of languages available in Wikipedia, we first build a matrix $E$ where the $i$-th row represents an entity $e_i \in E$ and $j$-th column refers to the corresponding language $l_j \in \mathcal{L}$. The crosslanguage links are used to automatically align on the same row all Wikipedia articles that describe the same entity. The element $E_{i,j}$ of this matrix is null if a Wikipedia article describing the entity $e_i$ does not exist in $l_j$. An instance in our machine learning problem is therefore represented as a row vector $e_i$ where each $j$-th element is a Wikipedia article in language $l_j$. Figure 1 shows a portion of the entity matrix.
+Formally, we proceed as follows to automatically derive the set of sentities $\epsilon$, also used to build the training set. Let $\mathcal{L}$ be the set of languages available in Wikipedia, we first build a matrix $E$ where the $i$-th row represents an entity $e_i \in E$ and $j$-th column refers to the corresponding language $l_j \in \mathcal{L}$. The crosslanguage links are used to automatically align on the same row all Wikipedia articles that describe the same entity. The element $E_{i,j}$ of this matrix is null if a Wikipedia article describing the entity $e_i$ does not exist in $l_j$. An instance in our machine learning problem is therefore represented as a row vector $e_i$ where each $j$-th element is a Wikipedia article in language $l_j$. Table \ref{tab:entityMatrix} shows a portion of the entity matrix.
 
 (interessante eu acabei modificando o arquivo do interlanguage igual esse autor, podemos justificar a escolha pela matriz dele)
 
-(COLOCAR MATRIZ)
+\begin{table}
+\centering
+    \begin{tabular}{llll}
+    en           & de           & it                        & . . .  \\ \hline
+    Xolile Yawa  & Xolile Yawa  & null                      &  . . . \\
+    The Locket   & null         & Il segreto del medaglione & . . .  \\
+    Barack Obama & Barack Obama & Barack Obama              & . . .  \\
+    null         & null         & Giorgio Dendi             & . . .  \\
+    . . .        & . . .        & . . .                     & . . .  \\
+    \vspace{0.2cm}
+    \end{tabular}
+    \caption{A portion of the entity matrix}
+	  \label{tab:entityMatrix}
+\end{table}
+
+In our case we want to find the first group of types for a resource. We search its main language for types and, if we don't find types for it, we also search addition languages.
 
 \subsection{Datasets}
 
-We will be using the English and Portuguese Wikipedias, and corresponding DBPedias. The process is described here: 
+We will be using several files to fulfill our task of Cross-Language enrichment. These files are provided by DBpedia and can be described in two groups of files:
 
-https://docs.google.com/document/d/1jyfbK5wYL9L5ljMaRDVm4gCacLPM-sz-S5AsqQoOuQM/edit
+\begin{itemize}
+	\item The first group has a single file, the interlanguage links triples file. This file is responsible of linking a resource in one language to another resource in another language using the predicate \textit{sameAs}. From now on we will refer to this file as \textbf{ILF}. An example of this relation can be seen in Table 2 (colocar tabela).
+	\item The second group is composed of triples files with types for each resource in a certain language. From now on we will reference these files as \textbf{instance types files}. The relation between a resource and its types is described by the predicate \textit{rdf:type}. The user determines the number of languages to be used.
+\end{itemize}
 
+(TABELA 2)
+
+The ILF is modified twice to become a file in the matrix representation presented in \ref{tab:entityMatrix} as a pre-processing step (\textbf{ILFC}). Our experiments have shown that this ensures less processing when using our greedy algorithm as will be seen in later sections.
+
+\section{Methodology}
+
+Since we want to complement the types of new resources in the main language instance types file, we look for new resources in the ILFC triples file. For each line in the latter file we will remove entries we already know, in other words, resources that have types already in their language instance types file. This reduces redundancy and prevents duplication of resources. One interesting factor of this filtering process is that if a user selects few languages as complement, the input file can drop 10 times in size.
+
+After the filtering stage, we proceed with the conforming stage. This second stage transforms the ILF from a lines to a columns format file (ILFC), with every column representing a language as shown in \ref{tab:entityMatrix}. This format have a few advantages:
+
+\begin{itemize}
+	\item We do not need to allocate all the instance types files into memory, we can process them by language (column). In the initial lines format we do not know what languages have types for a certain resource, so we need to allocate multiple instance types files into memory in case we need to query them.
+	\item We can easily apply sequential filters to the ILFC file to reduce processing. As we end querying a language instance types file for types we can remove lines/columns from the ILFC file that won be used when querying types in the next language. An example of the sequential filtering can be seen in Figure (colocare figura).
+\end{itemize}
 
 \section{Experiments}
 
