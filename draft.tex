@@ -32,19 +32,13 @@
 
 \section{Introduction}
 
-Among the open data communities responsible for the Semantic Web development, one of the most important is DBpedia. As their main site states, DBpedia is a is a crowd-sourced community effort to extract structured information from Wikipedia and make this information available on the Web. In fact, the DBpedia project releases an extraction framework used to extract the structured information contained in the infoboxes and to convert it in triples. 
+Among the open data communities responsible for the Semantic Web development, one of the most important is DBpedia. As their main site states, DBpedia is a crowd-sourced community effort to extract structured information from Wikipedia and make this information available on the Web. In fact, the DBpedia project releases an extraction framework used to extract information from the infoboxes and to convert it to a N-Triples format. The infobox can be interpreted as a summary of the related Wikipedia article.
 
-In fact, every DBpedia resource can be mapped into types in the onthology (Person, Location, etc.). This association is done through mappings (between onthology and infoboxes) created manually that are incomplete for various reasons. Among the various mappings provided by DBpedia, one in specific is the dataset linking a DBpedia resource to the same resource in other languages, called inter-language links.
+In fact, most DBpedia resources can be classified according to their corresponding types in the onthology, for instance, a Person, or a Location, etc. This association is done through mappings (between onthology and infoboxes) created manually that are incomplete for various reasons. Among the various mappings provided by DBpedia, one in specific is the dataset linking a DBpedia resource to the same resource in other languages, called inter-language links.
 
-With this dataset it is possible to create an information extraction approach that can be later used to enrich a language in various aspects. One of the important aspects that can be improved by this approach is the types coverage in a certain language.
+With this dataset it is possible to create an information extraction approach that can be later used to enrich a language in various aspects. In other words, we can search for information related to a certain resource in one language in other languages, using the inter-language mapping. If we do find extra information that was missing from the original language, we can use it to improve the information retrieval process.
 
-questions/problems: 
-- how to identify/map entities from each language?
-- Freebase types are enough for this process?
-- Is there any drawback?
-
-hypotheses:
--  an inter-language approach provides better accuracy
+We show in this article that this Cross-language approach can increase the recall value when retrieving information. We used the portuguese language as our main language, and the English, Italian and Spanish languages as complement languages.
 
 \section{Related Work}
 
@@ -74,8 +68,6 @@ Our approach exploits the Wikipedia cross-language links to represent each entit
 (aqui inicia o texto desse autor, podemos nos basear)
 Formally, we proceed as follows to automatically derive the set of sentities $\epsilon$, also used to build the training set. Let $\mathcal{L}$ be the set of languages available in Wikipedia, we first build a matrix $E$ where the $i$-th row represents an entity $e_i \in E$ and $j$-th column refers to the corresponding language $l_j \in \mathcal{L}$. The crosslanguage links are used to automatically align on the same row all Wikipedia articles that describe the same entity. The element $E_{i,j}$ of this matrix is null if a Wikipedia article describing the entity $e_i$ does not exist in $l_j$. An instance in our machine learning problem is therefore represented as a row vector $e_i$ where each $j$-th element is a Wikipedia article in language $l_j$. Table \ref{tab:entityMatrix} shows a portion of the entity matrix.
 
-(interessante eu acabei modificando o arquivo do interlanguage igual esse autor, podemos justificar a escolha pela matriz dele)
-
 \begin{table}
 \centering
     \begin{tabular}{llll}
@@ -98,11 +90,22 @@ In our case we want to find the first group of types for a resource. We search i
 We will be using several files to fulfill our task of Cross-Language enrichment. These files are provided by DBpedia and can be described in two groups of files:
 
 \begin{itemize}
-	\item The first group has a single file, the interlanguage links triples file. This file is responsible of linking a resource in one language to another resource in another language using the predicate \textit{sameAs}. From now on we will refer to this file as \textbf{ILF}. An example of this relation can be seen in Table 2 (colocar tabela).
+	\item The first group has a single file, the interlanguage links triples file. This file is responsible of linking a resource in one language to another resource in another language using the predicate \textit{sameAs}. From now on we will refer to this file as \textbf{ILF}. An example of this relation can be seen in \ref{tab:sameAsMatrix}.
 	\item The second group is composed of triples files with types for each resource in a certain language. From now on we will reference these files as \textbf{instance types files}. The relation between a resource and its types is described by the predicate \textit{rdf:type}. The user determines the number of languages to be used.
 \end{itemize}
 
-(TABELA 2)
+\begin{table}
+\centering
+    \begin{tabular}{ccl}
+    Subject      & Predicate    & Object                    \\ \hline
+    http://pt.dbpedia.org/resource/Alice & sameAs & http://dbpedia.org/resource/Alice \\
+		http://pt.dbpedia.org/resource/Alice & sameAs & http://es.dbpedia.org/resource/Alice \\
+		http://pt.dbpedia.org/resource/Alice & sameAs & http://it.dbpedia.org/resource/Alice \\    
+    \vspace{0.2cm}
+    \end{tabular}
+    \caption{The structure of the ILF.}
+	  \label{tab:sameAsMatrix}
+\end{table}
 
 The ILF is modified twice to become a file in the matrix representation presented in \ref{tab:entityMatrix} as a pre-processing step (\textbf{ILFC}). Our experiments have shown that this ensures less processing when using our greedy algorithm as will be seen in later sections.
 
@@ -117,10 +120,21 @@ After the filtering stage, we proceed with the conforming stage. This second sta
 	\item We can easily apply sequential filters to the ILFC file to reduce processing. As we end querying a language instance types file for types we can remove lines/columns from the ILFC file that won be used when querying types in the next language. An example of the sequential filtering can be seen in Figure (colocare figura).
 \end{itemize}
 
-\section{Experiments}
+\section{Results}
 
-...
-
+\begin{table}
+\centering
+    \begin{tabular}{|l|c|c|l|c|c|}
+		\hline
+		\multicolumn{3}{|c|}{Without Cross-language approach} & \multicolumn{3}{|c|}{With Cross-language approach}   \\ \hline		
+    Corpus       & Accuracy     & Global MRR & Corpus       & Accuracy     & Global MRR                \\ \hline
+    Default      & 0.778        & 0.4139     & Default      & 0.888        & 0.4475                    \\		
+		\hline   		
+    \end{tabular}
+		\vspace{0.2cm}
+    \caption{A disambiguation performance comparison. The results using the Cross-language approach to the right and not using it to the left.}
+	  \label{tab:resultsTable}
+\end{table}
 
 \section{Conclusion}
 
@@ -129,8 +143,6 @@ Potential Conclusions / Impact
 - Is it necessary a ``transitive closure" method?
 
 - Drawbacks?
-
-- How complete are the Freebase types?
 
 
 \bibliographystyle{splncs03}
