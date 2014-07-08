@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\urlprefix}{URL }
 
@@ -9,10 +9,20 @@ Aprosio, A.P., Giuliano, C., Lavelli, A.: Automatic expansion of dbpedia
   Science, vol. 7882, pp. 397--411. Springer (2013),
   \url{http://dblp.uni-trier.de/db/conf/esws/eswc2013.html#AprosioGL13}
 
+\bibitem{braschler}
+Braschler, M., Schäuble, P., Peters, C.: Cross-language information retrieval
+  (clir) track overview. In: TREC (1999),
+  \url{http://dblp.uni-trier.de/db/conf/trec/trec1999.html#BraschlerSP99}
+
 \bibitem{buscaldi_rosso}
 Buscaldi, D., Rosso, P.: Mining knowledge from wikipedia for the question
   answering task. In: Proceedings of the 5th International Conference on
   Language Resources and Evaluation (LREC). pp. 727--730. Genoa, Italy (2006)
+
+\bibitem{egozi}
+Egozi, O., Markovitch, S., Gabrilovich, E.: Concept-based information retrieval
+  using explicit semantic analysis. ACM Trans. Inf. Syst.  29(2),  8:1--8:34
+  (Apr 2011), \url{http://doi.acm.org/10.1145/1961209.1961211}
 
 \bibitem{erdmann}
 Erdmann, M., Nakayama, K., Hara, T., Nishio, S.: An approach for extracting
@@ -25,5 +35,29 @@ Erdmann, M., Nakayama, K., Hara, T., Nishio, S.: An approach for extracting
 Mihalcea, R.: {Using Wikipedia for Automatic Word Sense Disambiguation}. In:
   North American Chapter of the Association for Computational Linguistics
   (NAACL 2007) (2007)
+
+\bibitem{milne}
+Milne, D.N., Witten, I.H., Nichols, D.M.: A knowledge-based search engine
+  powered by wikipedia. In: Proceedings of the Sixteenth ACM Conference on
+  Conference on Information and Knowledge Management. pp. 445--454. CIKM '07,
+  ACM, New York, NY, USA (2007),
+  \url{http://doi.acm.org/10.1145/1321440.1321504}
+
+\bibitem{nguyen}
+Nguyen, D., Overwijk, A., Hauff, C., Trieschnigg, D.R.B., Hiemstra, D.,
+  De~Jong, F.: Wikitranslate: Query translation for cross-lingual information
+  retrieval using only wikipedia. In: Proceedings of the 9th Cross-language
+  Evaluation Forum Conference on Evaluating Systems for Multilingual and
+  Multimodal Information Access. pp. 58--65. CLEF'08, Springer-Verlag, Berlin,
+  Heidelberg (2009), \url{http://dl.acm.org/citation.cfm?id=1813809.1813818}
+
+\bibitem{nie}
+Nie, J.Y.: Cross-Language Information Retrieval. Synthesis Lectures on Human
+  Language Technologies, Morgan {\&} Claypool Publishers (2010)
+
+\bibitem{sorg}
+Sorg, P., Cimiano, P.: {Cross-lingual Information Retrieval with Explicit
+  Semantic Analysis}. In: Working Notes for the CLEF 2008 Workshop (2008),
+  \url{http://www.clef-campaign.org/2008/working\_notes/sorg\_paperCLEF2008.pdf}
 
 \end{thebibliography}

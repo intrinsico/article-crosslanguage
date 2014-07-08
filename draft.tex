@@ -40,22 +40,18 @@ With this dataset it is possible to create an information extraction approach th
 
 We show in this article that this Cross-language approach can increase the recall value when retrieving information. We used the portuguese language as our main language, and the English, Italian and Spanish languages as complement languages.
 
+- Globo corpus as contribution
+
 \section{Related Work}
 
-As a rich and free resource, Wikipedia contains very large amount of articles written in different languages and various types of link information showing the relations between articles. It has been used as external resource in many natural language processing tasks successfully (\cite{buscaldi_rosso}, \cite{mihalcea}, \cite{erdmann}). 
-Among the link information in Wikipedia, the inter-language link, which is created by article authors, connects large amount of articles that describe the same term but are written in different languages
+Wikipedia contains a large amount of articles written in different languages composing a rich and free content internet encyclopedia. It has been used as external resource in many natural language processing (\cite{buscaldi_rosso}, \cite{mihalcea}, \cite{erdmann}) and information retrieval \cite{egozi}, \cite{milne} tasks successfully. In particular, we are interested in a subset of the Information Retrieval research field, the Cross-Language Information Retrieval (CLIR).
 
-Besides of article titles, there still exists large amount of information that could be used for dictionary construction, such as the text inside the linked articles.
+In the Cross-Language scenario a user submits a query in one language to retrieve documents in a different language. Since Wikipedia has inter-language links connecting articles in various languages, it has being used for the CLIR task extensively \cite{sorg}, \cite{nguyen}, \cite{nie}, \cite{braschler}. Many approaches and techniques have been proposed for the CLIR task, such as dictionary approach and the disambiguation techniques; probability/statistic-based methods; transitive and triangulation methods; and Web-based approaches. In particular we are interested in the disambiguation techniques using Wikipedia. 
 
-//Conferir - It has been demonstrated that these inter-language links are useful resources for bilingual dictionary construction (\cite{erdmann}).
+Among the linked information in Wikipedia, there are inter-language links connecting a large amount of articles that describe the same entity but are written in different languages. These connections are created by article authors and distributed by DBpedia in an inter-language links file. The idea of increasing the DBpedia coverage using this file was used in \cite{aprosio}, where the authors propose an automatic methodology to do so. In this paper we propose a different methodology to increase DBpedia coverage and show the results using our approach in the disambiguation task.
 
-Papers:
-
-- Bilingual Dictionary Extraction from Wikipedia
-
-- Automatic Expansion of DBpedia Exploiting Wikipedia Cross-Language Information
-
-- Cross-Language Information Retrieval with Latent Topic Models Trained on a Comparable Corpus
+%There is also a large amount of information that could be used for dictionary construction besides of article titles, such as the content inside each article. Considering that similar content is usually available in abundance for parallel corpora, it is possible to retrieve cross-language information using a
+%bilingual topic model \cite{vulic}. Regarding the inter-language links in Wikipedia, it has been demonstrated that they are also useful resources for bilingual dictionary construction (\cite{erdmann}).
 
 \section{Methodology}
 
@@ -83,7 +79,7 @@ Formally, we proceed as follows to automatically derive the set of sentities $\e
 	  \label{tab:entityMatrix}
 \end{table}
 
-In our case we want to find the first group of types for a resource. We search its main language for types and, if we don't find types for it, we also search addition languages.
+In our case we want to find the first group of types for a resource. We search its main language for types and, if we don't find types for it, we also search additional languages.
 
 \subsection{Datasets}
 
@@ -108,6 +104,8 @@ We will be using several files to fulfill our task of Cross-Language enrichment.
 \end{table}
 
 The ILF is modified twice to become a file in the matrix representation presented in \ref{tab:entityMatrix} as a pre-processing step (\textbf{ILFC}). Our experiments have shown that this ensures less processing when using our greedy algorithm as will be seen in later sections.
+
+- Explain the Globo corpus
 
 \section{Methodology}
 
@@ -135,6 +133,8 @@ After the filtering stage, we proceed with the conforming stage. This second sta
     \caption{A disambiguation performance comparison. The results using the Cross-language approach to the right and not using it to the left.}
 	  \label{tab:resultsTable}
 \end{table}
+
+- Is it worth doing for more languages?
 
 \section{Conclusion}
 
