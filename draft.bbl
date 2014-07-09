@@ -31,6 +31,26 @@ Erdmann, M., Nakayama, K., Hara, T., Nishio, S.: An approach for extracting
   380--392. DASFAA'08, Springer-Verlag, Berlin, Heidelberg (2008),
   \url{http://dl.acm.org/citation.cfm?id=1802514.1802552}
 
+\bibitem{hakimov}
+Hakimov, S., Oto, S.A., Dogdu, E.: Named entity recognition and disambiguation
+  using linked data and graph-based centrality scoring. In: Proceedings of the
+  4th International Workshop on Semantic Web Information Management. pp.
+  4:1--4:7. SWIM '12, ACM, New York, NY, USA (2012),
+  \url{http://doi.acm.org/10.1145/2237867.2237871}
+
+\bibitem{li}
+Li, C., Sun, A., Datta, A.: A generalized method for word sense disambiguation
+  based on {Wikipedia}. In: Proceedings of the 33rd European conference on
+  Advances in information retrieval. Lecture Notes in Computer Science, vol.
+  6611, pp. 653--664. Springer, Berlin/Heidelberg (2011),
+  \url{http://portal.acm.org/citation.cfm?id=1996889.1996972}
+
+\bibitem{mendes}
+Mendes, P.N., Jakob, M., Garc\'{\i}a-Silva, A., Bizer, C.: Dbpedia spotlight:
+  Shedding light on the web of documents. In: Proceedings of the 7th
+  International Conference on Semantic Systems. pp. 1--8. I-Semantics '11, ACM,
+  New York, NY, USA (2011), \url{http://doi.acm.org/10.1145/2063518.2063519}
+
 \bibitem{mihalcea}
 Mihalcea, R.: {Using Wikipedia for Automatic Word Sense Disambiguation}. In:
   North American Chapter of the Association for Computational Linguistics
@@ -59,5 +79,10 @@ Nie, J.Y.: Cross-Language Information Retrieval. Synthesis Lectures on Human
 Sorg, P., Cimiano, P.: {Cross-lingual Information Retrieval with Explicit
   Semantic Analysis}. In: Working Notes for the CLEF 2008 Workshop (2008),
   \url{http://www.clef-campaign.org/2008/working\_notes/sorg\_paperCLEF2008.pdf}
+
+\bibitem{villar}
+Villar~Rodr{\'\i}guez, E., Torre-Bastida, A.I., Garc{\'\i}a-Serrano, A.,
+  Gonz{\'a}lez, M.: Using linked open data sources for entity disambiguation.
+  In: Online Reputation Management - RepLab. Valencia (09/2013 2013)
 
 \end{thebibliography}
